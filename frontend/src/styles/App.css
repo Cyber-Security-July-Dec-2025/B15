@@ -1,0 +1,279 @@
+/* --- Basic Styles --- */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  color: #333;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Main App Container --- */
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.header {
+  background: #1976d2;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* --- Main Layout Container (Sidebar + Chat) --- */
+.container {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+}
+
+/* --- Sidebar --- */
+.user-list {
+  width: 100%;
+  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+  border-right: 1px solid #eeeeee;
+  padding: 10px;
+  height: 100%;         /* Add this line */
+  max-height: 100vh;    /* Add this line for safety */
+  overflow-y: auto;
+}
+
+/* --- Chat Area --- */
+.chat-main {
+  flex-grow: 1; /* Allows the chat area to fill the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Messages Area --- */
+.messages {
+  flex-grow: 1; /* Fills the space between header and input form */
+  padding: 20px;
+  overflow-y: auto; /* Makes only the message area scrollable */
+  background: #fafafa;
+  min-height: 400px;
+}
+
+.message {
+  max-width: 75%;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+
+.message.sent {
+  background-color: #e3f2fd; /* Light blue */
+  margin-left: auto; /* Pushes the message to the right */
+  text-align: left; /* Keep text aligned left within the bubble */
+}
+
+.message.received {
+  background-color: #f1f1f1; /* Light gray */
+  margin-right: auto; /* Pushes the message to the left */
+}
+
+
+/* --- Message Input Form --- */
+.send-form {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #eeeeee;
+  background: #f5f5f5;
+}
+
+.send-form textarea {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  resize: none;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.send-form button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.send-form button:hover {
+  background-color: #1565c0;
+}
+
+/* --- Status & Auth --- */
+.status-message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+.status-message.success {
+  background: #e0ffe0;
+  color: #2e7d32;
+}
+.status-message.error {
+  background: #ffe0e0;
+  color: #c62828;
+}
+
+/* --- Toast Messages --- */
+.status-message-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  max-width: 90vw;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.12), 0 1.5px 4px rgba(0,0,0,0.08);
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  animation: toast-in 0.3s;
+}
+.status-message-toast.success {
+  border-left: 5px solid #2e7d32;
+}
+.status-message-toast.error {
+  border-left: 5px solid #c62828;
+}
+.status-message-toast__icon {
+  font-size: 1.3em;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px);}
+  to { opacity: 1; transform: translateX(-50%) translateY(0);}
+}
+
+/* --- Auth Container --- */
+.auth-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f6f6;
+}
+
+/* --- Auth Form --- */
+.login-form, .register-form {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+  padding: 2.5rem 2rem 2rem 2rem;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.login-form h2, .register-form h2 {
+  margin: 0 0 0.5rem 0;
+  color: #1976d2;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-form input, .register-form input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fafbfc;
+  color: #333;
+  transition: border 0.2s;
+}
+
+.login-form input:focus, .register-form input:focus {
+  border: 1.5px solid #1976d2;
+  outline: none;
+  background: #fff;
+}
+
+.login-form button[type="submit"], .register-form button[type="submit"] {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.login-form button[type="submit"]:hover, .register-form button[type="submit"]:hover {
+  background: #1565c0;
+}
+
+.login-form p, .register-form p {
+  text-align: center;
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.login-form button[type="button"], .register-form button[type="button"] {
+  background: none;
+  border: none;
+  color: #1976d2;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.login-form button[type="button"]:hover, .register-form button[type="button"]:hover {
+  color: #1565c0;
+}
+
+/* --- Responsive for Mobile (No Overlapping) --- */
+@media (max-width: 768px) {
+  .App {
+    margin: 0;
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .container {
+    flex-direction: column; /* Stacks the sidebar on top of the chat */
+  }
+
+  .user-list {
+    width: 100%; /* Make sidebar full width */
+    height: 150px; /* Give it less height on mobile */
+    border-right: none;
+    border-bottom: 1px solid #eeeeee;
+  }
+}
