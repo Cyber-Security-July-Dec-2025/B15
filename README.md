@@ -60,7 +60,7 @@ securechat/
 ### 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/securechat.git
+git clone https://github.com/Cyber-Security-July-Dec-2025/B15.git
 cd securechat
 ```
 
